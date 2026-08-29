@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio Amplifier PCB, Kevin Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .writeup-shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 24px 120px;
+  }
+  .writeup-back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    margin-bottom: 32px;
+    transition: color 0.15s ease;
+  }
+  .writeup-back:hover { color: var(--cyan); }
+
+  .writeup-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+
+  .writeup-title {
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .writeup-sub {
+    color: var(--paper-dim);
+    font-size: 1.05rem;
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+
+  .writeup-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    margin-bottom: 48px;
+  }
+  .writeup-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .writeup-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  .writeup-meta-value { font-size: 0.9rem; }
+
+  .writeup-figure { margin-bottom: 48px; }
+  .writeup-figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line-strong);
+  }
+  .writeup-figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--paper-dim);
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .writeup-section { margin-bottom: 48px; }
+  .writeup-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .writeup-section-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--rust);
+  }
+  .writeup-section-head h2 { font-size: 1.3rem; }
+
+  .writeup-section p {
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+  .writeup-section p:last-child { margin-bottom: 0; }
+
+  .writeup-section code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--paper);
+    background: rgba(243, 238, 230, 0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  .writeup-list { margin-bottom: 0; }
+  .writeup-list li {
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .writeup-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+  }
+  .writeup-list li strong { color: var(--paper); font-weight: 500; }
+
+  .writeup-callout {
+    border: 1px solid var(--line-strong);
+    background: rgba(28, 21, 48, 0.5);
+    padding: 20px 22px;
+    font-size: 0.9rem;
+    color: var(--paper-dim);
+  }
+  .writeup-callout strong { color: var(--paper); }
+
+  .writeup-footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .writeup-footer-links a:hover { color: var(--cyan); }
+
+  .skill-group { margin-bottom: 28px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../index.html#top" class="nav-mark">
+      <span class="nav-mark-bracket">[</span>K.W.<span class="nav-mark-bracket">]</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">01 About</a>
+      <a href="../index.html#skills">02 Skills</a>
+      <a href="../index.html#projects">03 Projects</a>
+      <a href="../index.html#experience">04 Experience</a>
+      <a href="../index.html#contact">05 Contact</a>
+    </nav>
+    <a href="../resume.pdf" class="nav-resume" download>Resume ↓</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="writeup-shell">
+
+  <a href="../index.html#projects" class="writeup-back">← Back to Projects</a>
+
+  <div class="writeup-eyebrow">⊢ PROJECT WRITEUP ⊣</div>
+  <h1 class="writeup-title">Audio Amplifier PCB</h1>
+  <p class="writeup-sub">
+    My first PCB, a deliberate, ground-up exercise in production PCB design in Cadence Allegro, taken from an
+    existing schematic all the way to a fabricated, board-house-ready board.
+  </p>
+
+  <div class="writeup-meta">
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Schematic By</span>
+      <span class="writeup-meta-value">Prof. Stephen Petersen (UCSC)</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Built With</span>
+      <span class="writeup-meta-value">OrCAD Capture CIS, Allegro PCB Designer, GerbTool</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">ICs</span>
+      <span class="writeup-meta-value">LM324, LM386</span>
+    </div>
+  </div>
+
+  <figure class="writeup-figure">
+    <img src="../images/audio-physical-board.jpg" alt="Fabricated two-layer audio amplifier PCB before assembly">
+    <figcaption>FIG. 1. FABRICATED BOARD, PRE-ASSEMBLY</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">01</span>
+      <h2>Overview</h2>
+    </div>
+    <p>
+      This project wasn't about circuit design: the schematic, a two-channel LM324/LM386 audio amplifier, was
+      designed by Professor Stephen Petersen at UCSC, and I'm crediting him for it directly. What this project was
+      about was everything downstream of a schematic: taking that circuit and producing an actual, manufacturable,
+      fabricated board in Cadence Allegro. It was my first PCB, and I used it deliberately as a full pass through
+      the production PCB design workflow rather than a from-scratch design exercise, so I could build real fluency
+      in the tools before applying that fluency to boards of my own design.
+    </p>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../images/audio-schematic.jpg" alt="Audio amplifier schematic in OrCAD Capture CIS">
+    <figcaption>FIG. 2. SCHEMATIC (ORCAD CAPTURE CIS), DESIGNED BY PROF. STEPHEN PETERSEN</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">02</span>
+      <h2>From Schematic to Layout</h2>
+    </div>
+    <p>
+      Starting from the OrCAD Capture CIS schematic, I brought the design into Allegro PCB Designer and worked
+      through the full layout process myself, translating the schematic's netlist, datasheets, and component
+      requirements into a physical, two-layer board.
+    </p>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../images/audio-pcb-layout.jpg" alt="Audio amplifier PCB layout in Allegro PCB Designer">
+    <figcaption>FIG. 3. TOP-LAYER PCB LAYOUT (ALLEGRO PCB DESIGNER)</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">03</span>
+      <h2>Allegro &amp; PCB Design Skills Demonstrated</h2>
+    </div>
+    <p>
+      The point of this project was depth, not novelty, going deliberately deep into the parts of PCB design that
+      only show up once you take a board seriously toward fabrication:
+    </p>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Footprints &amp; Pads</div>
+      <ul class="writeup-list">
+        <li>Created custom footprints from datasheet package dimensions, built to the fabricating board house's specific manufacturing tolerances</li>
+        <li>Edited pads for drill holes and footprints individually, including through-hole customization (size, type, and placement per component)</li>
+        <li>Designed heat sink pads for power-dissipating components</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Copper &amp; Routing</div>
+      <ul class="writeup-list">
+        <li>Worked with both dynamic and static copper shapes, understanding when each is appropriate</li>
+        <li>Routed signal and power traces with attention to width, spacing, and current-carrying requirements</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Layout &amp; Libraries</div>
+      <ul class="writeup-list">
+        <li>Built the full board layout across layers in Allegro PCB Designer</li>
+        <li>Organized and maintained footprint libraries for reuse and consistency</li>
+        <li>Defined board sizing, outlines, and cut marks for fabrication</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Fabrication Outputs</div>
+      <ul class="writeup-list">
+        <li>Edited drill files directly, and created a custom drill legend with drill symbols for the fabricator</li>
+        <li>Generated the full Gerber output set and verified every layer in GerbTool before releasing the design for manufacturing</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">04</span>
+      <h2>Result</h2>
+    </div>
+    <p>
+      The board was fabricated successfully and assembled (Fig. 1), a working, physical confirmation that the
+      footprints, drill data, and Gerber package were correct end to end. More importantly, it meant the first
+      time I took a design through Allegro to a board house, I understood every step of what I was submitting,
+      rather than treating fabrication as a black box.
+    </p>
+  </section>
+
+  <div class="writeup-footer-links">
+    <a href="../index.html#projects">← Back to Projects</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-note">Built by Kevin Wang · © 2026</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

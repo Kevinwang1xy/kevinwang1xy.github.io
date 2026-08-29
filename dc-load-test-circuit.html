@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmable DC Electronic Load, Kevin Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .writeup-shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 24px 120px;
+  }
+  .writeup-back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    margin-bottom: 32px;
+    transition: color 0.15s ease;
+  }
+  .writeup-back:hover { color: var(--cyan); }
+
+  .writeup-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+
+  .writeup-title {
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .writeup-sub {
+    color: var(--paper-dim);
+    font-size: 1.05rem;
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+
+  .writeup-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    margin-bottom: 48px;
+  }
+  .writeup-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .writeup-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  .writeup-meta-value { font-size: 0.9rem; }
+
+  .writeup-figure { margin-bottom: 48px; }
+  .writeup-figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line-strong);
+  }
+  .writeup-figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--paper-dim);
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .writeup-section { margin-bottom: 48px; }
+  .writeup-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .writeup-section-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--rust);
+  }
+  .writeup-section-head h2 { font-size: 1.3rem; }
+
+  .writeup-section p {
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+  .writeup-section p:last-child { margin-bottom: 0; }
+
+  .writeup-section code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--paper);
+    background: rgba(242, 238, 227, 0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  .writeup-list { margin-bottom: 0; }
+  .writeup-list li {
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .writeup-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+  }
+  .writeup-list li strong { color: var(--paper); font-weight: 500; }
+
+  .writeup-callout {
+    border: 1px solid var(--line-strong);
+    background: rgba(11, 27, 48, 0.5);
+    padding: 20px 22px;
+    font-size: 0.9rem;
+    color: var(--paper-dim);
+  }
+  .writeup-callout strong { color: var(--paper); }
+
+  .writeup-footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .writeup-footer-links a:hover { color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../index.html#top" class="nav-mark">
+      <span class="nav-mark-bracket">[</span>K.W.<span class="nav-mark-bracket">]</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">01 About</a>
+      <a href="../index.html#skills">02 Skills</a>
+      <a href="../index.html#projects">03 Projects</a>
+      <a href="../index.html#experience">04 Experience</a>
+      <a href="../index.html#contact">05 Contact</a>
+    </nav>
+    <a href="../resume.pdf" class="nav-resume" download>Resume ↓</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="writeup-shell">
+
+  <a href="../index.html#projects" class="writeup-back">← Back to Projects</a>
+
+  <div class="writeup-eyebrow">⊢ PROJECT WRITEUP ⊣</div>
+  <h1 class="writeup-title">Programmable DC Electronic Load</h1>
+  <p class="writeup-sub">
+    A bench tool for validating how a DC power source actually behaves under load, before trusting it inside a larger system.
+  </p>
+
+  <div class="writeup-meta">
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Built With</span>
+      <span class="writeup-meta-value">KiCAD, Arduino IDE, soldering station</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Tested With</span>
+      <span class="writeup-meta-value">Multimeters, LTSpice simulation</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Repository</span>
+      <span class="writeup-meta-value"><a href="https://github.com/Kevinwang1xy/Programmable-DC-Electronic-Load" target="_blank" style="border-bottom:1px solid var(--line-strong);">GitHub ↗</a></span>
+    </div>
+  </div>
+
+  <figure class="writeup-figure">
+    <img src="../dc-load-board.jpg" alt="Breadboard build of the programmable DC electronic load">
+    <figcaption>FIG. 1. BREADBOARD BUILD, PROGRAMMABLE DC ELECTRONIC LOAD</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">01</span>
+      <h2>Overview</h2>
+    </div>
+    <p>
+      Before a DC power source gets integrated into a larger system, it needs to be verified against its rated
+      voltage, current, and power output, not just at idle, but under realistic load. Rather than relying on
+      whatever fixed loads I had on hand, I built a programmable electronic load: a circuit that can sink a
+      precise, adjustable amount of current from a supply under test and report back exactly how that supply
+      responds.
+    </p>
+    <p>
+      The result is a small bench instrument, controlled through an OLED display and rotary encoder, that lets
+      me dial in a target current and watch how a power source's output voltage and stability hold up as the
+      load increases.
+    </p>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">02</span>
+      <h2>How It Works</h2>
+    </div>
+    <p>
+      The core of the circuit is an op-amp feedback loop. An op-amp will always try to drive its output so that
+      the voltage at its two input pins is equal. I used that property directly: an ESP32 microcontroller sets a target current
+      by generating a reference voltage (<code>V_ref</code>) through an MCP4725 DAC, and the op-amp compares
+      that against the voltage measured across a 1&Omega;, 5&nbsp;W sense resistor (<code>V_sense</code>) sitting
+      in series with an N-channel power MOSFET.
+    </p>
+    <p>
+      Because the sense resistor is exactly 1&Omega;, Ohm's law becomes very convenient. 
+      <code>V = I &times; R</code> means the voltage across it is numerically equal to the current through it, so
+      0.10&nbsp;V read across the resistor corresponds to about 0.10&nbsp;A of load current. That makes the design
+      intent simple: <code>V_ref</code> and target current are meant to be a straight 1:1 match: 0.10&nbsp;V in
+      should regulate to 0.10&nbsp;A.
+    </p>
+    <p>
+      The voltage divider is integrated to ensure safety. It caps the maximum current the board can ever be
+      commanded to draw, so the LM324 and MOSFET can never regulate more current than the design was
+      rated for (capped at 3&nbsp;A, the most the ESP32 side of the circuit is meant to output), even on a future
+      test at higher currents than the 0.05–0.30&nbsp;A range used here. The current tests never approach that
+      ceiling, but the divider makes it a hard limit rather than trusting the firmware,
+      which matters most when a test is pushed further than before. Finer DAC control is a side effect of
+      this divider. Firmware drives the DAC 11&times; higher than the target current
+      value, and the 10&nbsp;k&Omega;/1&nbsp;k&Omega; voltage divider (1/11 ratio) steps that back down to the correct
+      <code>V_ref</code> before it reaches the op-amp. The same 1/11 factor is applied in reverse in firmware when
+      converting the DAC setting back into an amps value, so the OLED always displays actual load current rather
+      than the pre-divider DAC voltage.
+    </p>
+    <p>
+      Whenever <code>V_sense</code> drifts from <code>V_ref</code>, the op-amp's output adjusts the MOSFET's gate voltage,
+      opening or closing the channel partially, until the two match again. That loop is what lets the load hold a steady,
+      user-defined current regardless of small changes in the supply's output.
+    </p>
+    <p>A real test use of the board looks like this:</p>
+    <ul class="writeup-list">
+      <li>User sets the target current to <strong>0.05&nbsp;A</strong> via the rotary encoder.</li>
+      <li>Firmware computes the desired <code>V_ref</code> (0.05&nbsp;V) and scales it 11&times;, commanding the DAC to output <strong>~0.55&nbsp;V</strong>.</li>
+      <li>The 10&nbsp;k&Omega;/1&nbsp;k&Omega; divider steps that back down to <strong>~0.05&nbsp;V</strong>.</li>
+      <li>The LM324 receives that 0.05&nbsp;V as its reference input.</li>
+      <li>The op-amp drives the MOSFET gate until <code>V_sense</code> &asymp; 0.05&nbsp;V.</li>
+      <li>Load current settles at <strong>&asymp; 0.05&nbsp;A</strong>.</li>
+    </ul>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">03</span>
+      <h2>Design &amp; Components</h2>
+    </div>
+    <p>The circuit is built using various ICs and embedded components, each specific to its role in the feedback loop:</p>
+    <ul class="writeup-list">
+      <li><strong>N-channel power MOSFET (IRLZ44N)</strong>, the variable element that sinks current from the supply under test.</li>
+      <li><strong>LM324 op-amp</strong>, compares reference and sense voltages and drives the MOSFET gate accordingly, leading to the sinking of current by the MOSFET.</li>
+      <li><strong>1&Omega; / 5&nbsp;W sense resistor</strong>, converts load current into a directly readable voltage at a 1:1 ratio.</li>
+      <li><strong>Arduino Nano ESP32</strong>, generates the current setpoint, reads live measurements, and drives the display.</li>
+      <li><strong>MCP4725 DAC (I2C)</strong>, sets the current target; a 10&nbsp;k&Omega;/1&nbsp;k&Omega; voltage divider on its output hard-caps the maximum current the board can ever be commanded to draw at 3&nbsp;A, protecting the LM324 and MOSFET on any future higher-current test. Firmware drives the DAC 11&times; above the target current to land on the correct 1:1 <code>V_ref</code> after the divider, and applies the same 1/11 factor in reverse so the OLED always reads out actual amps.</li>
+      <li><strong>OLED display + rotary encoder</strong>, the user interface for setting and monitoring current in real time. Rotation of the encoder changes the load current setting, and the button turns the load on/off.</li>
+    </ul>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../dc-load-schematic.jpg" alt="KiCAD schematic of the programmable DC electronic load">
+    <figcaption>FIG. 2. SCHEMATIC, PROGRAMMABLE DC LOAD (KICAD)</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">04</span>
+      <h2>Simulation &amp; Build Process</h2>
+    </div>
+    <p>
+      The circuit schematic was built in <strong style="color:var(--paper)">KiCAD</strong> (Fig. 2).
+      Before committing to the hardware, I ran the feedback loop portion of the circuit(comprised of the op-amp and MOSFET) through
+      <strong style="color:var(--paper)">LTSpice</strong>. At a 300&nbsp;mA operating point, the simulated sense
+      current (<code>I(R_sense)</code>) and MOSFET drain current (<code>Id(M1)</code>) converged to the same
+      0.300&nbsp;A value with the op-amp's two inputs settled to within a millivolt of each other, confirming the
+      feedback topology and gate drive would behave as intended. Firmware for the
+      ESP32 (reading the encoder, driving the DAC, and updating the OLED) was written and flashed through the
+      <strong style="color:var(--paper)">Arduino IDE</strong>.
+    </p>
+    <p>
+      The first build was prototyped on breadboard (Fig. 1) with a 1.2&nbsp;V, 700&nbsp;mAh battery cell as the source under
+      test, so individual stages (the sense resistor readout, the DAC output, the display) could be probed and
+      corrected independently before soldering anything down. Bench validation was done with hand-held
+      <strong style="color:var(--paper)">multimeters</strong>, cross-checking the voltage across the sense resistor
+      against the current the ESP32 was commanding, and comparing the supply's output voltage at rest against its
+      output under increasing load.
+    </p>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">05</span>
+      <h2>Bench Testing &amp; Results</h2>
+    </div>
+    <p>
+      Six load points were swept from 0.05&nbsp;A to 0.30&nbsp;A against the 1.2&nbsp;V source, which measured
+      1.39&nbsp;V open-circuit with no load applied. At every setpoint, measured <code>V_ref</code> and measured
+      <code>V_sense</code> matched closely, direct confirmation that the feedback loop was actively regulating
+      rather than just approximating the target.
+    </p>
+    <div style="overflow-x:auto; margin-bottom: 16px;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--line-strong);">
+            <th style="text-align:left; padding:8px 12px 8px 0; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">Setpoint</th>
+            <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">Measured I</th>
+            <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">Voltage Sag</th>
+            <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">Battery Power</th>
+            <th style="text-align:left; padding:8px 12px; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">Sense R Power</th>
+            <th style="text-align:left; padding:8px 0 8px 12px; font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.06em; color:var(--paper-dim); text-transform:uppercase;">MOSFET Power</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.05 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.049 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.070 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.065 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.002 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.062 W</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.10 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.098 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.110 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.125 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.010 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.116 W</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.15 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.148 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.150 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.184 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.022 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.162 W</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.20 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.197 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.188 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.237 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.039 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.198 W</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.25 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.247 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.230 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.287 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.061 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.226 W</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px 10px 0; font-family:var(--font-mono);">0.30 A</td>
+            <td style="padding:10px 12px; font-family:var(--font-mono);">0.296 A</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.270 V</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.332 W</td>
+            <td style="padding:10px 12px; color:var(--paper-dim);">0.088 W</td>
+            <td style="padding:10px 0 10px 12px; color:var(--paper-dim);">0.244 W</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Measured current tracked the commanded setpoint within about 2% across the full 0.05–0.30&nbsp;A range, and
+      source voltage sag scaled roughly linearly with load current, consistent with the battery's internal
+      resistance (on the order of 1&nbsp;&Omega;) rather than a loop-stability issue. As commanded current
+      increased, the MOSFET gate and op-amp output voltage rose to keep tracking the target sense voltage, exactly
+      as the feedback model predicts. While probing the MOSFET's source leg directly during the 0.10&nbsp;A test, I
+      found a reading that didn't match the sense node (0.231&nbsp;V vs. 0.099&nbsp;V); a later continuity check
+      traced this to roughly 3&nbsp;&Omega; of unwanted resistance in a breadboard jumper connection, not a fault
+      in the regulation loop itself. The sense-node and op-amp readings agreed throughout.
+    </p>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">06</span>
+      <h2>Reflection &amp; Next Steps</h2>
+    </div>
+    <p>
+      The core result (an op-amp feedback loop that holds a MOSFET at a commanded current within a couple percent)
+      held up on both simulation and hardware. The main lesson from bench testing was that I should carefully calculate 
+      how the circuit behaves under different voltage and current settings before testing with higher values. When testing a 
+      first rendition of the circuit, I noticed a unusually high current feeding into the op-amp, leading to further investigation 
+      and the integration of the voltage divider. A project completed in small and calculated intervals is usually safer than one completed in a rush and without real testing.
+    </p>
+    <p class="writeup-callout">
+      <strong>Next steps:</strong> move the prototype from breadboard to a soldered board to eliminate connection
+      resistance as a variable, adding a voltage divider ahead of the ESP32's ADC input for any future source
+      under test above 3.3&nbsp;V, as well as incorporating a usb-c adaptable input header to connect various forms of DC power sources such as power banks to the bench device.
+       A demo video of the load in operation is linked in the repository below.
+    </p>
+  </section>
+
+  <div class="writeup-footer-links">
+    <a href="https://github.com/Kevinwang1xy/Programmable-DC-Electronic-Load" target="_blank">View Full Repository ↗</a>
+    <a href="../index.html#projects">← Back to Projects</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-note">Built by Kevin Wang · © 2026</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

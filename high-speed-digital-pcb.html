@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High-Speed Digital Circuit Demonstration PCB, Kevin Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .writeup-shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 24px 120px;
+  }
+  .writeup-back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    margin-bottom: 32px;
+    transition: color 0.15s ease;
+  }
+  .writeup-back:hover { color: var(--cyan); }
+
+  .writeup-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+
+  .writeup-title {
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .writeup-sub {
+    color: var(--paper-dim);
+    font-size: 1.05rem;
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+
+  .writeup-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    margin-bottom: 48px;
+  }
+  .writeup-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .writeup-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  .writeup-meta-value { font-size: 0.9rem; }
+
+  .writeup-figure { margin-bottom: 48px; }
+  .writeup-figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line-strong);
+  }
+  .writeup-figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--paper-dim);
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .writeup-section { margin-bottom: 48px; }
+  .writeup-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .writeup-section-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--rust);
+  }
+  .writeup-section-head h2 { font-size: 1.3rem; }
+
+  .writeup-section p {
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+  .writeup-section p:last-child { margin-bottom: 0; }
+
+  .writeup-section code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--paper);
+    background: rgba(243, 238, 230, 0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  .writeup-list { margin-bottom: 0; }
+  .writeup-list li {
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .writeup-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+  }
+  .writeup-list li strong { color: var(--paper); font-weight: 500; }
+
+  .writeup-callout {
+    border: 1px solid var(--line-strong);
+    background: rgba(28, 21, 48, 0.5);
+    padding: 20px 22px;
+    font-size: 0.9rem;
+    color: var(--paper-dim);
+  }
+  .writeup-callout strong { color: var(--paper); }
+
+  .writeup-footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .writeup-footer-links a:hover { color: var(--cyan); }
+
+  .writeup-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+  .writeup-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .writeup-table th {
+    text-align: left;
+    padding: 8px 12px 8px 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--paper-dim);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .writeup-table td {
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .writeup-table tr:last-child td { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../index.html#top" class="nav-mark">
+      <span class="nav-mark-bracket">[</span>K.W.<span class="nav-mark-bracket">]</span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">01 About</a>
+      <a href="../index.html#skills">02 Skills</a>
+      <a href="../index.html#projects">03 Projects</a>
+      <a href="../index.html#experience">04 Experience</a>
+      <a href="../index.html#contact">05 Contact</a>
+    </nav>
+    <a href="../resume.pdf" class="nav-resume" download>Resume ↓</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="writeup-shell">
+
+  <a href="../index.html#projects" class="writeup-back">← Back to Projects</a>
+
+  <div class="writeup-eyebrow">⊢ PROJECT WRITEUP ⊣</div>
+  <h1 class="writeup-title">High-Speed Digital Circuit Demonstration PCB</h1>
+  <p class="writeup-sub">
+    A 2-layer PCB built to make three high-speed signal-integrity effects (ground bounce, near-end crosstalk,
+    and far-end crosstalk) directly measurable rather than theoretical.
+  </p>
+
+  <div class="writeup-meta">
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Collaborators</span>
+      <span class="writeup-meta-value">Jon Elwood, Jake Pong</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Built With</span>
+      <span class="writeup-meta-value">Altium Designer</span>
+    </div>
+    <div class="writeup-meta-item">
+      <span class="writeup-meta-label">Tested With</span>
+      <span class="writeup-meta-value">Oscilloscope, spectrum analyzer, TDR</span>
+    </div>
+  </div>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-assembled-board.jpg" alt="Assembled high-speed digital signal-integrity demonstration PCB">
+    <figcaption>FIG. 1. ASSEMBLED PCB, GROUND BOUNCE (TOP) AND SIGNAL LOSS / CROSSTALK (BOTTOM) SECTIONS</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">01</span>
+      <h2>Overview</h2>
+    </div>
+    <p>
+      We wanted a real, hands-on understanding of how digital signal behavior changes between low-speed and
+      extremely high-speed operation (up to 20&nbsp;MHz and beyond), where effects that are negligible on a slow
+      bus start to dominate. So together with teammates Jon Elwood and Jake Pong, I designed and built a 2-layer
+      PCB specifically to test and demonstrate the most common high-speed signal-integrity effects rather than
+      just simulate them. The board is split into two sections: a ground bounce section, where six simultaneously
+      switching flip-flop outputs are used to induce a measurable "bounce" on the local ground reference, and a
+      signal loss / crosstalk section, where three trace geometries let near-end crosstalk (NEXT), far-end
+      crosstalk (FEXT), and channel loss be isolated and measured independently.
+    </p>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">02</span>
+      <h2>Team &amp; Contributions</h2>
+    </div>
+    <ul class="writeup-list">
+      <li><strong>Jon Elwood</strong>, signal loss / crosstalk PCB design, testing, and soldering</li>
+      <li><strong>Jake Pong</strong>, PCB layout, load selection, testing, and analysis</li>
+      <li><strong>Kevin Wang (me)</strong>, board design and ground bounce circuit schematic, documentation, and testing</li>
+    </ul>
+    <p style="margin-top:16px;">
+      Thank you to Professor Bose and TA Jayant for their help designing the board and interpreting our data.
+    </p>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-schematic.jpg" alt="Ground bounce schematic for the high-speed digital demonstration PCB">
+    <figcaption>FIG. 2. GROUND BOUNCE SCHEMATIC (ALTIUM DESIGNER)</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">03</span>
+      <h2>Components</h2>
+    </div>
+    <ul class="writeup-list">
+      <li><strong>SN74HC174N hex D-flip-flop</strong>, six simultaneously switching outputs drive the ground bounce section.</li>
+      <li><strong>Load capacitors (47 pF – 1 nF)</strong>, six different capacitances on the ground return path, so the bounce effect could be measured across a range of switching loads.</li>
+      <li><strong>100 nF bypass capacitor</strong>, local supply decoupling for the flip-flop.</li>
+      <li><strong>32K145-400L5 SMA connectors</strong>, repeatable, 50&Omega;-style probing for both sections.</li>
+      <li><strong>TSW-102-22-G-S-RA header</strong>, board power input.</li>
+    </ul>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">04</span>
+      <h2>Ground Bounce: Theory &amp; Setup</h2>
+    </div>
+    <p>
+      Ground bounce comes from a simple but easy-to-underestimate relationship: <code>V = L &times; di/dt</code>.
+      Any real ground return path has some parasitic inductance, and when current through it changes quickly
+      enough, that inductance develops a real voltage across itself, meaning "ground" briefly isn't at a single,
+      stable potential everywhere on the board.
+    </p>
+    <p>
+      To make that effect large enough to measure reliably, the section drives all six outputs of a hex D-flip-flop
+      simultaneously, so their combined switching current produces a large di/dt through a shared ground return.
+      Six different load capacitances (47 pF through 1 nF) were placed on that return path so the bounce could be
+      characterized across a range of switching loads, measurements were taken at 100 kHz, 1 MHz, and 10 MHz to
+      see how the effect scaled with switching frequency.
+    </p>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-groundbounce-results.jpg" alt="Oscilloscope captures of ground bounce at 100 kHz, 1 MHz, and 10 MHz">
+    <figcaption>FIG. 3. GROUND BOUNCE, MEASURED AT 100 kHz, 1 MHz, AND 10 MHz</figcaption>
+  </figure>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-3d-render.jpg" alt="3D render of the high-speed digital demonstration PCB layout">
+    <figcaption>FIG. 4. 3D RENDER, SIGNAL LOSS / CROSSTALK TEST-STRUCTURE LAYOUT</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">05</span>
+      <h2>Crosstalk &amp; Channel Loss: Test Structure</h2>
+    </div>
+    <p>
+      The crosstalk section isolates which physical variable actually drives coupling between adjacent traces by
+      varying only one thing at a time, each over a 12&nbsp;cm signal path:
+    </p>
+    <ul class="writeup-list">
+      <li><strong>Control</strong>, 100&nbsp;mil trace spacing, 10&nbsp;mil trace width.</li>
+      <li><strong>Test 1 (wide spacing)</strong>, 300&nbsp;mil trace spacing, 10&nbsp;mil trace width, isolating the effect of separation alone.</li>
+      <li><strong>Test 2 (wide trace)</strong>, 100&nbsp;mil trace spacing, 50&nbsp;mil trace width, isolating the effect of trace geometry alone.</li>
+    </ul>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">06</span>
+      <h2>Measured Results</h2>
+    </div>
+    <p>Near-end (NEXT, S21) and far-end (FEXT, S41) crosstalk were measured at 3&nbsp;MHz across all three geometries:</p>
+    <div class="writeup-table-wrap">
+      <table class="writeup-table">
+        <thead>
+          <tr><th>Configuration</th><th>NEXT (S21) @ 3 MHz</th><th>FEXT (S41) @ 3 MHz</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Control, 10 mil / 100 mil</td><td>~30 mV peak</td><td>~25 mV peak</td></tr>
+          <tr><td>Wide trace, 50 mil / 100 mil</td><td>~50 mV peak</td><td>~22 mV peak</td></tr>
+          <tr><td>Wide spacing, 10 mil / 300 mil</td><td>~6 mV peak</td><td>~5 mV peak</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Tripling the spacing (100&nbsp;mil &rarr; 300&nbsp;mil) cut both NEXT and FEXT by roughly 5&times;, the clearest
+      trend in the data. Widening the trace itself (10&nbsp;mil &rarr; 50&nbsp;mil at fixed spacing) noticeably
+      increased NEXT but left FEXT about the same, a pattern we flagged for further analysis rather than a settled
+      conclusion (see below). Channel loss (S31) was also swept from 100&nbsp;Hz–20&nbsp;MHz and again out to
+      104&nbsp;MHz, with phase recorded alongside magnitude at both spans.
+    </p>
+  </section>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-next-results.jpg" alt="Oscilloscope captures of S21 near-end crosstalk (NEXT) at 3 MHz across three trace geometries">
+    <figcaption>FIG. 5. NEXT (S21) @ 3 MHz, ACROSS ALL THREE TRACE GEOMETRIES</figcaption>
+  </figure>
+
+  <figure class="writeup-figure">
+    <img src="../images/hsd-fext-results.jpg" alt="Oscilloscope captures of S41 far-end crosstalk (FEXT) at 3 MHz across three trace geometries">
+    <figcaption>FIG. 6. FEXT (S41) @ 3 MHz, ACROSS ALL THREE TRACE GEOMETRIES</figcaption>
+  </figure>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">07</span>
+      <h2>Analysis &amp; Open Questions</h2>
+    </div>
+    <p>
+      We came out of testing with real data but also with a few questions we didn't fully resolve, which felt more
+      honest to document than to paper over:
+    </p>
+    <ul class="writeup-list">
+      <li>Whether the sign/polarity we saw in the S-parameter (CT) measurements was physically meaningful or a measurement-setup artifact.</li>
+      <li>Whether coupling at each trace geometry was predominantly electric-field or magnetic-field in nature, which would explain why widening the trace increased NEXT without moving FEXT.</li>
+      <li>How much "charge bank" effects from the power supply influenced the switching-current measurements.</li>
+      <li>What Time-Domain Reflectometer (TDR) traces showed about inductive via impedance and rising-edge behavior at the connector transitions.</li>
+    </ul>
+    <p class="writeup-callout">
+      <strong>Thanks:</strong> to Professor Bose and TA Jayant for their guidance on the board design and for
+      helping us interpret this data.
+    </p>
+  </section>
+
+  <section class="writeup-section">
+    <div class="writeup-section-head">
+      <span class="writeup-section-num">08</span>
+      <h2>Design Improvements</h2>
+    </div>
+    <p>Testing also surfaced a couple of layout issues worth fixing on a future revision:</p>
+    <ul class="writeup-list">
+      <li><strong>Right-angle trace corners.</strong> Several high-speed traces on this board use sharp 90&deg; bends. At these signal speeds, right-angle corners behave like a local impedance discontinuity. They contribute to reflections, signal loss, and resonance that a smoother bend avoids. The next revision should route high-speed traces with curved or mitered (45&deg;) corners instead.</li>
+      <li><strong>Apparent negative resistance.</strong> A few traces showed what measured as negative resistance during testing. We haven't fully root-caused this (whether it's a measurement/setup artifact or a real effect of coupling injecting energy back into the trace), but it's flagged as something to investigate and resolve on the next board.</li>
+    </ul>
+  </section>
+
+  <div class="writeup-footer-links">
+    <a href="../index.html#projects">← Back to Projects</a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-note">Built by Kevin Wang · © 2026</p>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
