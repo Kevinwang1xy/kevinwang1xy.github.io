@@ -210,6 +210,27 @@
       <article class="project-card">
         <div class="project-sheet-no">SHEET 01</div>
         <div class="project-thumb">
+          <img src="high-power-load-ltspice.jpg" alt="LTSpice simulation of the three parallel MOSFET current feedback loops">
+        </div>
+        <div class="project-body">
+          <h3>High-Power Portable DC Load</h3>
+          <p class="project-meta">Designing in KiCAD. Simulating in LTSpice. In development.</p>
+          <p class="project-desc">
+            A packaged, portable successor to the original DC load, built to sink up to 30 V, 10 A, and 150 W from a device under test instead of a few watts on a breadboard. Current is split across three parallel MOSFET/op-amp feedback loops, each with its own sense resistor and copper pour, driven off a shared reference through a voltage-follower buffer stage. The whole instrument is meant to be self-contained: a KiCAD PCB carrying the ESP32, DAC, MOSFETs, op-amps, and sense resistors, powered from a 3S Li-ion pack through a buck converter, with a heatsink and 5V fan for cooling and a USB-C/USB port to connect the device under test.
+          </p>
+          <ul class="project-results">
+            <li>Simulating the three-loop current-sharing topology in LTSpice, shown here, before finalizing the PCB layout in KiCAD</li>
+            <li>Selected core components: IXTH140N075L2 MOSFETs, OPA4197 op-amps, and Kelvin-routed 0.05&Omega; sense resistors for per-loop current sensing</li>
+          </ul>
+          <div class="project-links">
+            <span class="project-links-pending">Write-up Coming Soon</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-sheet-no">SHEET 02</div>
+        <div class="project-thumb">
           <img src="dc-load-board.jpg" alt="Breadboard build of the programmable DC load test bench">
         </div>
         <div class="project-body">
@@ -230,7 +251,7 @@
       </article>
 
       <article class="project-card">
-        <div class="project-sheet-no">SHEET 02</div>
+        <div class="project-sheet-no">SHEET 03</div>
         <div class="project-thumb">
           <img src="hsd-assembled-board.jpg" alt="Assembled high-speed digital signal-integrity demonstration PCB">
         </div>
@@ -251,7 +272,7 @@
       </article>
 
       <article class="project-card">
-        <div class="project-sheet-no">SHEET 03</div>
+        <div class="project-sheet-no">SHEET 04</div>
         <div class="project-thumb">
           <img src="audio-physical-board.jpg" alt="Assembled two-layer analog audio amplifier PCB">
         </div>
@@ -272,7 +293,7 @@
       </article>
 
       <article class="project-card">
-        <div class="project-sheet-no">SHEET 04</div>
+        <div class="project-sheet-no">SHEET 05</div>
         <div class="project-thumb">
           <span>WRITE-UP<br>IN PROGRESS</span>
         </div>
